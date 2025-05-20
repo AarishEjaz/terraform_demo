@@ -2,17 +2,25 @@ provider "aws"{
     region = "ap-south-1"
 }
 
-# Launching EC2 instance --------------------------------------------------------
-resource "aws_instance" "terraform-ec2" {
-    ami = var.ami_id
-    instance_type = var.instance_type
-    count = var.instance_count
-    
-  tags = {
-    Name = var.instance_name
-  }
+
+module "WebServer" {
+    source = "./module/ec2"
+    instance_count = 1
+    instance_name =  "My TF web server"
   
 }
+
+# Launching EC2 instance --------------------------------------------------------
+# resource "aws_instance" "terraform-ec2" {
+    # ami = var.ami_id
+    # instance_type = var.instance_type
+    # count = var.instance_count
+    # 
+  # tags = {
+    # Name = var.instance_name
+  # }
+  # 
+# }
 
 # Launching S3 bucket -----------------------------------------------------------
 resource "aws_s3_bucket" "example" {
@@ -53,6 +61,7 @@ resource "aws_security_group" "example" {
   }
 }
 
+# Creating Dynamo db table ------------------------------------------------------------
 resource "aws_dynamodb_table" "basic-dynamodb-table" {
   name           = "terraform-lock"
   billing_mode   = "PAY_PER_REQUEST"
