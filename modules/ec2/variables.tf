@@ -32,3 +32,9 @@ variable "aws_region" {
     description = "number of instances"
   
 }
+
+variable "ingress_ports" {
+    type = list(number)
+    description = "list of ingress ports to be added"
+    default = [ 22,80,443,8080,3000,8000 ]
+}

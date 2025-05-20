@@ -26,6 +26,13 @@ variable "instance_name" {
   
 }
 
+variable "security_group_name" {
+    type = string
+    default = "Terraform-created-group"
+    description = "number of instances"
+  
+}
+
 variable "aws_region" {
     type = string
     default = "ap-south-1"

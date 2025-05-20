@@ -10,6 +10,13 @@ module "WebServer" {
   
 }
 
+# module "WebServer_security" {
+#     source = "./modules/ec2"
+#     instance_count = 1
+#     instance_name =  "My TF web server"
+  
+# }
+
 # Launching EC2 instance --------------------------------------------------------
 # resource "aws_instance" "terraform-ec2" {
     # ami = var.ami_id
