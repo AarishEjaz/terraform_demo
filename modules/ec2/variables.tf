@@ -3,7 +3,8 @@ variable "instance_config" {
       ami_id = string,
       instance_type = string,
       instance_count = number,
-      instance_name = string
+      instance_name = string,
+    #   aws_region = string
     })
 }
 
