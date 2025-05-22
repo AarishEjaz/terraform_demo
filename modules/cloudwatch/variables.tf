@@ -2,7 +2,7 @@ variable "alarm_config" {
     type = object({
       alarm_name = string,
       comparison_operator = string,
-      evaluation_period = number,
+      evaluation_periods = number,
       metric_name = string,
       namespace = string,
       period = number,
@@ -10,9 +10,7 @@ variable "alarm_config" {
       threshold = number,
       alarm_description = string,
       alarm_actions = list(string),
-      dimensions = {
-        
-      }
+      dimensions = map(string)
     })
   
 }
