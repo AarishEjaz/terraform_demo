@@ -4,14 +4,16 @@ provider "aws" {
 }
 
 resource "aws_instance" "terraform-ec2" {
-    ami = var.ami_id
-    instance_type = var.instance_type
-    count = var.instance_count
-    
+
+    ami = var.instance_config.ami_id
+    instance_type = var.instance_config.instance_type
+    count = var.instance_config.instance_count
+    key_name = "ansible-test"
   tags = {
-    Name = var.instance_name
+    Name = var.instance_config.instance_name
   }
   
+
 }
 
 

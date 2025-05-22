@@ -5,8 +5,28 @@ provider "aws"{
 
 module "WebServer" {
     source = "./modules/ec2"
-    instance_count = 1
-    instance_name =  "My TF web server"
+
+    instance_config = {
+      ami_id = var.instance_config.ami_id
+      instance_type = var.instance_config.instance_type
+      instance_count = var.instance_config.instance_count
+      instance_name =  "WebServer-${var.instance_config.instance_name}" 
+    }
+    
+  
+}
+
+module "BackendServer" {
+    source = "./modules/ec2"
+
+    instance_config = {
+      ami_id = var.instance_config.ami_id
+      instance_type = var.instance_config.instance_type
+      instance_count = var.instance_config.instance_count
+      instance_name =  "BackendServer-${var.instance_config.instance_name}" 
+    }
+
+  
   
 }
 
@@ -87,13 +107,13 @@ module "WebServer" {
 
 
 # Backend --------------------------------------------------------
-terraform {
-  backend "s3" {
-    bucket = "my-aarish-tf-test-bucket"
-    region = "ap-south-1"
-    # key = "db"
-    # use_lockfile = true
-    # dynamodb_table = "terraform-lock"
+# terraform {
+#   backend "s3" {
+#     bucket = "my-aarish-tf-test-bucket"
+#     region = "ap-south-1"
+#     # key = "db"
+#     # use_lockfile = true
+#     # dynamodb_table = "terraform-lock"
     
-  }
-}
+#   }
+# }

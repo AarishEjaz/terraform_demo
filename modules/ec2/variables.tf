@@ -1,3 +1,12 @@
+variable "instance_config" {
+    type = object({
+      ami_id = string,
+      instance_type = string,
+      instance_count = number,
+      instance_name = string
+    })
+}
+
 variable "ami_id" {
     type = string
     default = "ami-0af9569868786b23a"
@@ -37,4 +46,11 @@ variable "ingress_ports" {
     type = list(number)
     description = "list of ingress ports to be added"
     default = [ 22,80,443,8080,3000,8000 ]
+}
+
+variable "security_group_name" {
+    type = string
+    default = "Terraform-created-group"
+    description = "number of instances"
+  
 }
