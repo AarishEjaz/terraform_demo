@@ -15,33 +15,30 @@ variable "instance_config" {
     }
 }
 
-# variable "ami_id" {
-#     type = string
-#     default = "ami-0af9569868786b23a"
-#     description = "This is the ami id "
-
-# }
-
-# variable "instance_type" {
-#     type = string
-#     default = "t2.micro"
-#     description = "Type of EC2 instance to be launched"
+variable "environment" {
+  type = string
   
-# }
+}
 
-# variable "instance_count" {
-#     type = number
-#     default = 2
-#     description = "number of instances"
+# variable "alarm_config" {
+#     type = object({
+#       alarm_name = string,
+#       comparison_operator = string,
+#       evaluation_periods = number,
+#       metric_name = string,
+#       namespace = string,
+#       period = number,
+#       statistic = string,
+#       threshold = number,
+#       alarm_description = string,
+#       alarm_actions = list(string),
+#       dimensions = map(string)
+#     })
   
-# }
+# } 
 
-# variable "instance_name" {
-#     type = string
-#     default = "Terraform-created"
-#     description = "number of instances"
-  
-# }
+
+
 
 variable "security_group_name" {
     type = string

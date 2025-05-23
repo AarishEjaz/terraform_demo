@@ -16,6 +16,35 @@ module "WebServer" {
   
 }
 
+resource "aws_sns_topic" "alarms" {
+  name = "${terraform.workspace}-alarms"
+}
+
+module "webserver_cpu_alarm" {
+  source = "./modules/cloudwatch"
+  count = var.environment == "prod"?var.instance_config.instance_count:0
+  alarm_config = {
+    alarm_name = "${terraform.workspace}-webserver-high-cpu-${count.index + 1}"
+    comparison_operator = "GreaterThanThreshold"
+    evaluation_periods = 5
+    metric_name = "CPUUtilization"
+    namespace = "AWS/EC2"
+    period = 60
+    statistic = "Average"
+    threshold = 5
+    alarm_description = "Test monitor created for prod resources"
+    alarm_actions = [aws_sns_topic.alarms.arn]
+
+    dimensions = {
+      InstanceId = module.WebServer.instance_id[count.index]
+    }
+
+  }
+
+  
+  
+}
+
 module "BackendServer" {
     source = "./modules/ec2"
 
