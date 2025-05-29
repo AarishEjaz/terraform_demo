@@ -6,13 +6,13 @@ variable "instance_config" {
       instance_name = string,
       # aws_region = string
     })
-    default = {
-      ami_id = "ami-0af9569868786b23a"
-      instance_type = "t2.micro"
-      instance_count = 2
-      instance_name = "My tf instance"
-      # aws_region = "ap-south-1"
-    }
+    # default = {
+    #   ami_id = "ami-0af9569868786b23a"
+    #   instance_type = "t2.micro"
+    #   instance_count = 2
+    #   instance_name = "My tf instance"
+    #   # aws_region = "ap-south-1"
+    # }
 }
 
 variable "environment" {
