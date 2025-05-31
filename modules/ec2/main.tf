@@ -12,16 +12,21 @@ resource "aws_instance" "terraform-ec2" {
   tags = {
     Name = var.instance_config.instance_name
   }
+
+
+  vpc_security_group_ids = [aws_security_group.sg_example.id]
+  subnet_id = var.vpc_config.subnet_id
   
 
 }
 
 
 # Adding security group --------------------------------------------------
-resource "aws_security_group" "example" {
+resource "aws_security_group" "sg_example" {
   # ... other configuration ...
-  name = "terraform_allow_group"
+  name = var.security_group_name
   description = "allowing traffic to instances"
+  vpc_id = var.vpc_config.vpc_id
 
   dynamic "ingress" {
     for_each = var.ingress_ports

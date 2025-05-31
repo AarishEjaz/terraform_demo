@@ -8,6 +8,13 @@ variable "instance_config" {
     })
 }
 
+variable "vpc_config" {
+  type = object({
+    vpc_id = string
+    subnet_id = string
+  })
+}
+
 variable "ami_id" {
     type = string
     default = "ami-0af9569868786b23a"

@@ -20,6 +20,13 @@ variable "environment" {
   
 }
 
+# variable "vpc_config" {
+#   type = object({
+#     vpc_id = string
+#     subnet_id = string
+#   })
+# }
+
 # variable "alarm_config" {
 #     type = object({
 #       alarm_name = string,
